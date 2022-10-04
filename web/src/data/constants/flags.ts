@@ -30,7 +30,7 @@ export const flags = [
   ),
 ];
 
-export const countries = flags.map(flag => flag.country);
+export const countries = flags.map(flag => flag.country).sort();
 
 export function randomFlag(){
   const index = lodash.random(0, flags.length-1);

@@ -28,6 +28,13 @@ export function Quiz(){
     setAnswer('');
   }
 
+  function handleRestart(){
+    setScore(0);
+    setLifes(3);
+    setMistakenCountries([]);
+    pickFlag();
+  }
+
   return (
     <main className="flex bg-gray-900 h-screen justify-center items-center py-4">
       <form
@@ -37,7 +44,7 @@ export function Quiz(){
         <h1
           className="text-white font-bold text-2xl"
         >
-          Guess where this flag is from
+          Advinhe de qual país é essa bandeira
         </h1>
         <img 
           src={currentFlag.imgPath}
@@ -71,10 +78,18 @@ export function Quiz(){
             Submit
           </button>
         </div>
-        {true && (
-          <p className="text-white font-bold text-xl">
-            Errou! a resposta era {currentFlag.country}
-          </p>
+        {lifes <=0 && (
+          <div>
+            <p className="text-white font-bold text-xl">
+              Errou! a resposta era {currentFlag.country}
+            </p>
+            <button
+              className="bg-black text-white text-xl font-bold p-1"
+              onClick={handleRestart}
+            >
+              Tentar de novo
+            </button>
+          </div>
         )}
       </form>
       <div className="flex flex-col justify-start h-full p-4 w-48">
@@ -98,7 +113,6 @@ export function Quiz(){
           )
         })}
       </div>
-      
     </main>
   )
 }
