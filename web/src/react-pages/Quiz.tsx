@@ -75,7 +75,7 @@ export function Quiz(){
           <button
             className="bg-black text-white text-xl font-bold p-1"
           >
-            Submit
+            Enviar
           </button>
         </div>
         {lifes <=0 && (
