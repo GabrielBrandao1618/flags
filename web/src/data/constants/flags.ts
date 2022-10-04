@@ -16,6 +16,18 @@ export const flags = [
     'Argentina',
     'https://via.placeholder.com/150/5455fb'
   ),
+  new Flag(
+    'Bolivia',
+    'https://via.placeholder.com/150/ff55fb'
+  ),
+  new Flag(
+    'Peru',
+    'https://via.placeholder.com/150/54f5fb'
+  ),
+  new Flag(
+    'Cuba',
+    'https://via.placeholder.com/150/546ffb'
+  ),
 ];
 
 export const countries = flags.map(flag => flag.country);
