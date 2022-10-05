@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useMemo, useState} from 'react';
 import lodash from 'lodash';
-import { Flag } from '../data/constants/flags';
+import { Flag } from '../entities/Flag';
 import { useFlagsQuery } from '../graphql/generated';
 
 export function useFlags(){
