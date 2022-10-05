@@ -33,6 +33,15 @@ export function useFlags(){
   }, [data]);
 
   const isLoading = loading && !!flags
+
+  const countries = flags.map(flag => flag.country);
   
-  return {flags, pickRand, isLoading, randomFlag, selectRandFlag};
+  return {
+    flags, 
+    pickRand, 
+    isLoading, 
+    randomFlag, 
+    selectRandFlag, 
+    countries
+  };
 }

@@ -8,7 +8,8 @@ export function Quiz(){
     flags, 
     isLoading, 
     randomFlag: currentFlag,
-    selectRandFlag
+    selectRandFlag,
+    countries
   } = useFlags();
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
@@ -18,6 +19,7 @@ export function Quiz(){
   function handleAnswer(e: FormEvent){
     e.preventDefault();
     if(mistakenCountries.includes(answer)) return;
+    if(!countries.includes(answer)) return
     if(answer === currentFlag.country){
       setScore(score+1);
       setLifes(3);
@@ -65,13 +67,13 @@ export function Quiz(){
             className="flex-1"
           />
           <datalist id="countries">
-            {flags.map(flag => {
+            {countries.map(country => {
               return (
                 <option 
-                  value={flag.country}
-                  key={flag.country}
+                  value={country}
+                  key={country}
                 >
-                  {flag.country}
+                  {country}
                 </option>
               )
             })}
