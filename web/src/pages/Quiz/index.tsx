@@ -1,29 +1,30 @@
 import {FormEvent, useState} from 'react';
 
-import { countries, Flag, randomFlag } from '../../data/constants/flags';
+import { useFlags } from '../../hooks/useFlags';
 
 export function Quiz(){
-  const [currentFlag, setCurrentFlag] = useState<Flag>(randomFlag());
+  const {
+    flags, 
+    isLoading, 
+    randomFlag: currentFlag,
+    selectRandFlag
+  } = useFlags();
   const [answer, setAnswer] = useState('');
   const [score, setScore] = useState(0);
   const [lifes, setLifes] = useState(3);
   const [mistakenCountries, setMistakenCountries] = useState<string[]>([]);
 
-  function pickFlag(){
-    setCurrentFlag(randomFlag());
-  }
-
   function handleAnswer(e: FormEvent){
     e.preventDefault();
-    if(mistakenCountries.includes(answer)) return
+    if(mistakenCountries.includes(answer)) return;
     if(answer === currentFlag.country){
       setScore(score+1);
       setLifes(3);
       setMistakenCountries([]);
-      pickFlag();
+      selectRandFlag();
     } else {
       setLifes(lifes-1);
-      setMistakenCountries([...mistakenCountries, answer])
+      setMistakenCountries([...mistakenCountries, answer]);
     }
     setAnswer('');
   }
@@ -32,8 +33,11 @@ export function Quiz(){
     setScore(0);
     setLifes(3);
     setMistakenCountries([]);
-    pickFlag();
+    selectRandFlag();
   }
+
+  if(isLoading) return <h1>Loading...</h1>;
+  if(!currentFlag) return <h1>Not current flag</h1>
 
   return (
     <main className="flex bg-gray-900 h-screen justify-center items-center py-4">
@@ -61,13 +65,13 @@ export function Quiz(){
             className="flex-1"
           />
           <datalist id="countries">
-            {countries.map(country => {
+            {flags.map(flag => {
               return (
                 <option 
-                  value={country}
-                  key={country}
+                  value={flag.country}
+                  key={flag.country}
                 >
-                  {country}
+                  {flag.country}
                 </option>
               )
             })}
