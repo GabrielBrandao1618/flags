@@ -1,4 +1,5 @@
 import {FormEvent, useState} from 'react';
+import { LoadingScreen } from '../../components/LoadingScreen';
 
 import { useFlags } from '../../hooks/useFlags';
 
@@ -36,7 +37,7 @@ export function Quiz(){
     selectRandFlag();
   }
 
-  if(isLoading || !currentFlag) return <h1>Loading...</h1>;
+  if(isLoading || !currentFlag) return <LoadingScreen />
 
   return (
     <main className="flex bg-gray-900 h-screen justify-center items-center py-4">
