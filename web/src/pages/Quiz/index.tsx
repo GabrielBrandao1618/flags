@@ -36,7 +36,7 @@ export function Quiz(){
     selectRandFlag();
   }
 
-  if(isLoading) return <h1>Loading...</h1>;
+  if(isLoading || !currentFlag) return <h1>Loading...</h1>;
 
   return (
     <main className="flex bg-gray-900 h-screen justify-center items-center py-4">
