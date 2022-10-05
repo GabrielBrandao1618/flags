@@ -1,9 +1,0 @@
-query Flags {
-  flags {
-    country
-    id
-    path {
-      url
-    }
-  }
-}
