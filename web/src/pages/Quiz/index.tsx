@@ -111,7 +111,7 @@ export function Quiz(){
         {lifes <=0 && (
           <div className="flex w-full justify-end">
             <button
-              className="bg-blue-900 text-white text-xl font-bold p-1 rounded"
+              className="bg-blue-900 text-white text-lg font-bold p-1 rounded"
               onClick={handleRestart}
             >
               Tentar de novo
