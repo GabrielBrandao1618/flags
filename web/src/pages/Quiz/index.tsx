@@ -1,6 +1,7 @@
 import {FormEvent, useState} from 'react';
 import { HealthBar } from '../../components/HealthBar';
 import { LoadingScreen } from '../../components/LoadingScreen';
+import { MistakenCountry } from '../../components/MistakenCountry';
 import {TextInput} from '../../components/TextInput';
 
 import { useFlags } from '../../hooks/useFlags';
@@ -53,10 +54,13 @@ export function Quiz(){
         >
           Flags
         </h1>
+        <span className="text-white font-bold text-xl">
+          Score: {score}
+        </span>
         <img 
           src={currentFlag.imgPath}
           alt="Uma bandeira de um país" 
-          className="w-full h-auto mt-4 rounded-md"
+          className="h-[300px] w-auto mt-4 rounded-md"
         />
         {lifes <= 0 && (
           <span className="text-white w-full text-center">
@@ -69,6 +73,7 @@ export function Quiz(){
             list='countries'
             onChange={e => setAnswer(e.target.value)}
             value={answer}
+            disabled={lifes <= 0}
           />
           <TextInput.Button
             type="submit"
@@ -95,8 +100,16 @@ export function Quiz(){
             )
           })}
         </datalist>
+        <div className="flex gap-2">
+          {mistakenCountries.map(country => (
+            <MistakenCountry 
+              name={country}
+              key={country}
+            />
+          ))}
+        </div>
         {lifes <=0 && (
-          <div>
+          <div className="flex w-full justify-end">
             <button
               className="bg-blue-900 text-white text-xl font-bold p-1 rounded"
               onClick={handleRestart}

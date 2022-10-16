@@ -8,7 +8,7 @@ export interface HealthBarProps {
 }
 
 export function HealthBar({health, className}: HealthBarProps){
-  const hearts = lodash.range(1, 4).map(n => n <= health? true : false);
+  const hearts = lodash.range(1, 4).map(n => n <= health? {fill: true, n} : {fill:false, n});
   return (
     <div
       className={clsx(
@@ -16,12 +16,13 @@ export function HealthBar({health, className}: HealthBarProps){
         className
       )}
     >
-      {hearts.map(fill => (
+      {hearts.map(heart => (
         <Heart 
-          weight={fill? 'fill' : 'regular'}
+          weight={heart.fill? 'fill' : 'regular'}
           fill="#FF1818"
           size={24}
           color="#FF1818"
+          key={heart.n}
         />
       ))}
     </div>
