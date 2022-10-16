@@ -46,7 +46,7 @@ export function Quiz(){
     <main className="flex bg-gray-900 h-screen justify-center items-center py-4">
       <form
         onSubmit={handleAnswer}
-        className="self-center flex flex-col w-full max-w-[500px] h-full"
+        className="self-center flex flex-col w-full max-w-[500px] h-full gap-4"
       >
         <h1
           className="text-white font-bold text-6xl w-full text-center"
@@ -56,49 +56,49 @@ export function Quiz(){
         <img 
           src={currentFlag.imgPath}
           alt="Uma bandeira de um país" 
-          className="w-full h-auto mt-16"
+          className="w-full h-auto mt-4 rounded-md"
         />
-        <div className="flex w-full">
-          {/* <input 
-            type="text"
+        {lifes <= 0 && (
+          <span className="text-white w-full text-center">
+            Errou! a resposta era {currentFlag.country}
+          </span>
+        )}
+        <TextInput.Root>
+          <TextInput.Input 
+            placeholder="Digite o nome do país dessa bandeira"
             list='countries'
-            value={answer}
             onChange={e => setAnswer(e.target.value)}
-            disabled={lifes<=0}
-            className="flex-1"
-          /> */}
-          <TextInput.Root>
-            <TextInput.Input 
-              placeholder="Country"
-              list='countries'
-            />
-            <TextInput.Button
-              type="submit"
-            >
-              Tentar
-            </TextInput.Button>
+            value={answer}
+          />
+          <TextInput.Button
+            type="submit"
+            disabled={lifes <= 0}
+          >
+            Tentar
+          </TextInput.Button>
 
-          </TextInput.Root>
-          <datalist id="countries">
-            {countries.map(country => {
-              return (
-                <option 
-                  value={country}
-                  key={country}
-                >
-                  {country}
-                </option>
-              )
-            })}
-          </datalist>
+        </TextInput.Root>
+        <div className="flex w-full justify-center">
+          <HealthBar 
+            health={lifes}
+          />
         </div>
+        <datalist id="countries">
+          {countries.map(country => {
+            return (
+              <option 
+                value={country}
+                key={country}
+              >
+                {country}
+              </option>
+            )
+          })}
+        </datalist>
         {lifes <=0 && (
           <div>
-            <p className="text-white font-bold text-xl">
-              Errou! a resposta era {currentFlag.country}
-            </p>
             <button
-              className="bg-black text-white text-xl font-bold p-1"
+              className="bg-blue-900 text-white text-xl font-bold p-1 rounded"
               onClick={handleRestart}
             >
               Tentar de novo

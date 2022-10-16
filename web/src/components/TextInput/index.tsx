@@ -8,12 +8,14 @@ interface TextInputWrapperProps {
 }
 function TextInputWrapper({children, className}: TextInputWrapperProps){
   return (
+    <>
     <div className={clsx(
       'flex bg-gray-800 h-12 w-full overflow-hidden rounded',
       className
     )}>
       {children}
     </div>
+    </>
   );
 }
 
@@ -27,14 +29,12 @@ function TextInputInput({...props}:TextInputInputProps) {
   );
 }
 
-interface TextInputButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-
-}
+interface TextInputButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {}
 function TextInputButton({className, ...props}: TextInputButtonProps){
   return (
     <button
       className={clsx(
-        'bg-blue-900 text-white font-bold block h-full px-3',
+        'bg-blue-900 text-white font-bold block h-full px-3 disabled:bg-blue-300',
         className
       )}
       {...props}
