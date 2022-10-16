@@ -1,14 +1,21 @@
 import {Heart} from 'phosphor-react';
 import lodash from 'lodash';
+import {clsx} from 'clsx';
 
 export interface HealthBarProps {
   health: number;
+  className?: string;
 }
 
-export function HealthBar({health}: HealthBarProps){
+export function HealthBar({health, className}: HealthBarProps){
   const hearts = lodash.range(1, 4).map(n => n <= health? true : false);
   return (
-    <div>
+    <div
+      className={clsx(
+        'flex',
+        className
+      )}
+    >
       {hearts.map(fill => (
         <Heart 
           weight={fill? 'fill' : 'regular'}

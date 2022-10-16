@@ -1,12 +1,12 @@
 import {FormEvent, useState} from 'react';
 import { HealthBar } from '../../components/HealthBar';
 import { LoadingScreen } from '../../components/LoadingScreen';
+import {TextInput} from '../../components/TextInput';
 
 import { useFlags } from '../../hooks/useFlags';
 
 export function Quiz(){
   const {
-    flags, 
     isLoading, 
     randomFlag: currentFlag,
     selectRandFlag,
@@ -56,17 +56,29 @@ export function Quiz(){
         <img 
           src={currentFlag.imgPath}
           alt="Uma bandeira de um país" 
-          className="w-full h-auto"
+          className="w-full h-auto mt-16"
         />
         <div className="flex w-full">
-          <input 
+          {/* <input 
             type="text"
             list='countries'
             value={answer}
             onChange={e => setAnswer(e.target.value)}
             disabled={lifes<=0}
             className="flex-1"
-          />
+          /> */}
+          <TextInput.Root>
+            <TextInput.Input 
+              placeholder="Country"
+              list='countries'
+            />
+            <TextInput.Button
+              type="submit"
+            >
+              Tentar
+            </TextInput.Button>
+
+          </TextInput.Root>
           <datalist id="countries">
             {countries.map(country => {
               return (
@@ -79,11 +91,6 @@ export function Quiz(){
               )
             })}
           </datalist>
-          <button
-            className="bg-black text-white text-xl font-bold p-1"
-          >
-            Enviar
-          </button>
         </div>
         {lifes <=0 && (
           <div>
@@ -99,27 +106,6 @@ export function Quiz(){
           </div>
         )}
       </form>
-      <div className="flex flex-col justify-start h-full p-4 w-48">
-        <div className="flex flex-col">
-          <span className="w-full text-left text-white text-xl font-bold">
-            score: {score}
-          </span>
-          <HealthBar 
-            health={lifes}
-          />
-        </div>
-        <hr />
-        {mistakenCountries.map(country => {
-          return (
-            <p 
-              key={country}
-              className="text-white text-xl font-semibold"
-            >
-              ❌ {country}
-            </p>
-          )
-        })}
-      </div>
     </main>
   )
 }
