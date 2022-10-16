@@ -1,4 +1,5 @@
 import {FormEvent, useState} from 'react';
+import { HealthBar } from '../../components/HealthBar';
 import { LoadingScreen } from '../../components/LoadingScreen';
 
 import { useFlags } from '../../hooks/useFlags';
@@ -48,9 +49,9 @@ export function Quiz(){
         className="self-center flex flex-col w-full max-w-[500px] h-full"
       >
         <h1
-          className="text-white font-bold text-2xl"
+          className="text-white font-bold text-6xl w-full text-center"
         >
-          Advinhe de qual país é essa bandeira
+          Flags
         </h1>
         <img 
           src={currentFlag.imgPath}
@@ -103,9 +104,9 @@ export function Quiz(){
           <span className="w-full text-left text-white text-xl font-bold">
             score: {score}
           </span>
-          <span className="w-full text-left text-white text-xl font-bold">
-            lifes: {lifes}
-          </span>
+          <HealthBar 
+            health={lifes}
+          />
         </div>
         <hr />
         {mistakenCountries.map(country => {
