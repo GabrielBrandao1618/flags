@@ -3453,7 +3453,7 @@ export type FlagsQuery = { __typename?: 'Query', flags: Array<{ __typename?: 'Fl
 
 export const FlagsDocument = gql`
     query Flags {
-  flags {
+  flags(first: 300) {
     country
     id
     path {
