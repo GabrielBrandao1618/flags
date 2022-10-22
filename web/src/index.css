@@ -6,7 +6,8 @@
 
 body {
   margin: 0;
-  height: 100vh;
+  min-height: 100vh;
   box-sizing: border-box;
   font-family: Poppins;
+  @apply bg-gray-900;
 }

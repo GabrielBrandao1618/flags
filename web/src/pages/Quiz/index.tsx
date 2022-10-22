@@ -44,23 +44,23 @@ export function Quiz(){
   if(isLoading || !currentFlag) return <LoadingScreen />
 
   return (
-    <main className="flex bg-gray-900 h-screen justify-center items-center py-4">
+    <main className="flex bg-gray-900 h-full justify-center items-center py-4">
       <form
         onSubmit={handleAnswer}
         className="self-center flex flex-col w-full max-w-[500px] h-full gap-4"
       >
         <h1
-          className="text-white font-bold text-6xl w-full text-center"
+          className="text-white font-bold lg:text-6xl md:text-5xl sm:text-4xl text-3xl w-full text-center"
         >
           Flags
         </h1>
-        <span className="text-white font-bold text-xl">
+        <span className="text-white font-bold md:text-xl text-base">
           Score: {score}
         </span>
         <img 
           src={currentFlag.imgPath}
           alt="Uma bandeira de um país" 
-          className="h-[300px] w-auto mt-4 rounded-md"
+          className="w-full h-auto mt-4 rounded-md"
         />
         {lifes <= 0 && (
           <span className="text-white w-full text-center">
@@ -69,7 +69,7 @@ export function Quiz(){
         )}
         <TextInput.Root>
           <TextInput.Input 
-            placeholder="Digite o nome do país dessa bandeira"
+            placeholder="Adivinhe a bandeira"
             list='countries'
             onChange={e => setAnswer(e.target.value)}
             value={answer}
